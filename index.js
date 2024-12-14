@@ -24,9 +24,6 @@ model.forEach((block) => {
 site.insertAdjacentHTML("beforeend", html)
 });
 
-
-console.log(site);
-
 function title(block) {
   return `
     <div class="row">
