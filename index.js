@@ -20,7 +20,8 @@ model.forEach((block) => {
     html = columns(block)
   }
 
-  // Метод insertAdjacentHTML() применяется к полученым из DOM элементам и позволяет вставлять в указанное место HTML-код в виде строки
+  // Метод insertAdjacentHTML() применяется к полученым из DOM элементам
+  // и позволяет вставлять в указанное место HTML-код в виде строки
 site.insertAdjacentHTML("beforeend", html)
 });
 
