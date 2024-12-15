@@ -11,7 +11,7 @@ const model = [
 
 // Проверяем тип блока и генерируем соответствующий HTML
 model.forEach((block) => {
-  let html = "";
+  let html = '';
 
   if (block.type === 'title') {
     // Если тип блока 'title', вызываем функцию title для генерации HTML
@@ -24,12 +24,12 @@ model.forEach((block) => {
     html = columns(block)
   }
 
-  // Метод insertAdjacentHTML() применяется к полученному из DOM элементу и вставлять в указанное место HTML-код в виде строки
+  // Метод insertAdjacentHTML() применяется к полученному из DOM элементу, HTML-код в виде строки, вставляет в указанное место
 site.insertAdjacentHTML("beforeend", html)
 });
 
 
-// Функция для генерации HTML для блока типа 'title'
+// Функция для генерации HTML-кода для блока типа 'title'
 function title(block) {
   return `
     <div class="row">
@@ -40,7 +40,7 @@ function title(block) {
   `;
 }
 
-// Функция для генерации HTML для блока типа 'text'
+// Функция для генерации HTML-кода для блока типа 'text'
 function text(block) {
   return `
   <div class="row">
@@ -52,12 +52,15 @@ function text(block) {
 }
 
 // Функция для генерации HTML-кода для блока типа 'columns'
+// Эта функция будет вызвана в контексте проверки типа элемента при итерации по массиву-модели(model) шаблона html-кода,
+// где получит аргумент 'block', в котором содержатся данные о количестве элементов(колонок) в этом блоке.
+// после чего на основе полученных данных, сгенирирует HTML-код для каждой колонки
 function columns(block) {
+  const html = block.value.map(column => `<div class="col-sm">${column}</div>`).join('')
+
   return `
   <div class="row">
-    <div class="col-sm">${block.value[0]}</div>
-    <div class="col-sm">${block.value[1]}</div>
-    <div class="col-sm">${block.value[2]}</div>
+  ${html}
   </div>
-  `
+  `;
 }
