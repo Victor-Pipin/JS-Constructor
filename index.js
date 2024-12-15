@@ -1,29 +1,35 @@
 
-//  В этом массиве, представлены элементы блока "id-site" в виде обьектов,
+// В этом массиве, представлена модель элементов блока "id-site" в виде обьектов,
 // которые описывают эти элементы, type - тип элемента, value - контент, содержимое элемента
 const model = [
   { type: "title", value: "Hello World from JS!" },
   { type: "text", value: "here we go with some text" },
-  { type: "columns", value: ["First", "Second", "Third",] },
+  { type: "columns", value: ["First", "Second", "Third"] },
 ];
 
   const site = document.querySelector("#site");   // DOM-элемент, в который будут добавлятся элементы, через js
 
+// Проверяем тип блока и генерируем соответствующий HTML
 model.forEach((block) => {
   let html = "";
 
   if (block.type === 'title') {
+    // Если тип блока 'title', вызываем функцию title для генерации HTML
     html = title(block)
   } else if (block.type === 'text') {
+    // Если тип блока 'text', вызываем функцию text для генерации HTML
     html = text(block)
   } else if (block.type === 'columns') {
+    // Если тип блока 'columns', вызываем функцию columns для генерации HTML
     html = columns(block)
   }
 
-  // Метод insertAdjacentHTML() применяется к полученым из DOM элементам и позволяет вставлять в указанное место HTML-код в виде строки
+  // Метод insertAdjacentHTML() применяется к полученному из DOM элементу и вставлять в указанное место HTML-код в виде строки
 site.insertAdjacentHTML("beforeend", html)
 });
 
+
+// Функция для генерации HTML для блока типа 'title'
 function title(block) {
   return `
     <div class="row">
@@ -34,6 +40,7 @@ function title(block) {
   `;
 }
 
+// Функция для генерации HTML для блока типа 'text'
 function text(block) {
   return `
   <div class="row">
@@ -44,6 +51,7 @@ function text(block) {
   `;
 }
 
+// Функция для генерации HTML-кода для блока типа 'columns'
 function columns(block) {
   return `
   <div class="row">
